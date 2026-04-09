@@ -2,68 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Number Guessing Game</title>
+  <title>Mini Wordle Game</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
       background-color: #f5f5f5;
+      text-align: center;
+      padding-top: 40px;
     }
+
     h1 {
       color: #2c3e50;
     }
-    input {
-      padding: 5px;
-      margin: 5px;
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(5, 50px);
+      grid-gap: 8px;
+      justify-content: center;
+      margin: 20px auto;
+      width: 270px;
     }
+
+    .tile {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      background-color: white;
+    }
+
+    .correct {
+      background-color: #6aaa64;
+      color: white;
+      border-color: #6aaa64;
+    }
+
+    .present {
+      background-color: #c9b458;
+      color: white;
+      border-color: #c9b458;
+    }
+
+    .absent {
+      background-color: #787c7e;
+      color: white;
+      border-color: #787c7e;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 150px;
+      margin-top: 20px;
+    }
+
     button {
-      padding: 5px 10px;
+      padding: 8px 15px;
+      font-size: 16px;
+      margin-left: 10px;
       cursor: pointer;
     }
-    #result {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    a {
-      display: inline-block;
+
+    #message {
       margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
       color: #0066cc;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Number Guessing Game</h1>
-  <p>Guess a number between 1 and 100.</p>
+  <h1>Mini Wordle</h1>
+  <p>Guess the 5‑letter word! You have 6 tries.</p>
 
-  <input type="number" id="guess" placeholder="Enter your guess">
-  <button onclick="checkGuess()">Submit</button>
+  <div id="board"></div>
 
-  <p id="result"></p>
+  <input id="guessInput" maxlength="5" placeholder="Enter guess">
+  <button onclick="submitGuess()">Submit</button>
+
+  <p id="message"></p>
 
   <a href="scratch.html">Back to Scratch Page</a>
 
   <script>
-    let secret = Math.floor(Math.random() * 100) + 1;
+    const words = ["APPLE", "BRAIN", "CHAIR", "PLANT", "WATER", "MONEY", "SMILE", "LIGHT"];
+    const secret = words[Math.floor(Math.random() * words.length)];
+    let currentRow = 0;
 
-    function checkGuess() {
-      const guessInput = document.getElementById('guess');
-      const result = document.getElementById('result');
-      const guess = Number(guessInput.value);
+    // Create 6 rows × 5 tiles = 30 tiles
+    const board = document.getElementById("board");
+    for (let i = 0; i < 30; i++) {
+      const tile = document.createElement("div");
+      tile.classList.add("tile");
+      board.appendChild(tile);
+    }
 
-      if (!guess) {
-        result.textContent = 'Please enter a number.';
+    function submitGuess() {
+      const input = document.getElementById("guessInput");
+      let guess = input.value.toUpperCase();
+
+      if (guess.length !== 5) {
+        document.getElementById("message").textContent = "Guess must be 5 letters.";
         return;
       }
 
-      if (guess === secret) {
-        result.textContent = 'Correct! You guessed the number!';
-      } else if (guess < secret) {
-        result.textContent = 'Too low. Try again.';
-      } else {
-        result.textContent = 'Too high. Try again.';
+      const tiles = document.querySelectorAll(".tile");
+      const start = currentRow * 5;
+
+      // Fill tiles with letters
+      for (let i = 0; i < 5; i++) {
+        tiles[start + i].textContent = guess[i];
+
+        if (guess[i] === secret[i]) {
+          tiles[start + i].classList.add("correct");
+        } else if (secret.includes(guess[i])) {
+          tiles[start + i].classList.add("present");
+        } else {
+          tiles[start + i].classList.add("absent");
+        }
       }
+
+      if (guess === secret) {
+        document.getElementById("message").textContent = "You win! The word was " + secret + ".";
+        disableGame();
+        return;
+      }
+
+      currentRow++;
+
+      if (currentRow === 6) {
+        document.getElementById("message").textContent = "Out of tries! The word was " + secret + ".";
+        disableGame();
+      }
+
+      input.value = "";
+    }
+
+    function disableGame() {
+      document.getElementById("guessInput").disabled = true;
     }
   </script>
 
