@@ -1,0 +1,120 @@
+/* General styles */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Professional pages (index, resume) */
+body.professional {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.site-header {
+  background-color: #2c3e50;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.site-header h1 {
+  margin: 0;
+}
+
+.site-header nav a {
+  color: #ffffff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  margin-top: 40px;
+}
+
+/* Scratch page styles */
+body.scratch {
+  background-color: #f0f8ff;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  color: #333333;
+}
+
+.scratch-header {
+  background-color: #4a90e2;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.scratch-header nav a {
+  color: #ffffff;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.scratch-header nav a:hover {
+  text-decoration: underline;
+}
+
+.scratch-content {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.image-box img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.video-box,
+.tableau-box {
+  margin: 20px 0;
+}
+
+/* Three styled divs */
+.three-divs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.box {
+  flex: 1 1 30%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+
+.box1 {
+  background-color: #e8f4ff;
+}
+
+.box2 {
+  background-color: #e8ffe8;
+}
+
+.box3 {
+  background-color: #fff5e8;
+}
+
+.scratch-footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #d9e9ff;
+  margin-top: 40px;
+}
