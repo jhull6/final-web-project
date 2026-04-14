@@ -55,14 +55,23 @@
   </div>
 </section>
 
-    <section>
-      <h2>Tableau Visualization</h2>
-      <p>This is where a live Tableau visualization will go:</p>
-      <div class="tableau-box">
-        <!-- Later: paste Tableau embed code here from Tableau Public -->
-        <p>[Tableau visualization embed goes here]</p>
-      </div>
-    </section>
+  <section>
+  <h2>Tableau Visualization</h2>
+  <p>This is an interactive Tableau visualization showing elephant population trends.</p>
+
+  <div class="tableau-box">
+    <script type='module' src='https://10ay.online.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js'></script>
+    <tableau-viz 
+      id='tableau-viz'
+      src='https://10ay.online.tableau.com/t/jessi104-e6fc1176fd/views/ElephantImbeddedTableau/Sheet1'
+      width='1199'
+      height='605'
+      hide-tabs
+      toolbar='bottom'>
+    </tableau-viz>
+  </div>
+</section>
+
 
     <section>
       <h2>On-page Anchor</h2>
