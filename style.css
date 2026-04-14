@@ -140,3 +140,25 @@ body.scratch {
   margin-left: 20px;
   list-style-type: disc;
 }
+/* Skills section styling */
+.resume-subheader {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.skill-group {
+  margin-bottom: 20px;
+}
+
+.skill-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.skill-bullets {
+  margin-left: 20px;
+  list-style-type: disc;
+}
