@@ -1,17 +1,30 @@
-/* General styles */
+/* --------------------------------------------------
+   GLOBAL STYLES
+-------------------------------------------------- */
+
+/* Modern clean font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-}
-
-/* Professional pages (index, resume) */
-body.professional {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
-  color: #333333;
+  color: #000000;
+  line-height: 1.6;
 }
 
-/* Clean modern header */
+/* Page content wrapper */
+.content, section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* --------------------------------------------------
+   HEADER + NAVIGATION
+-------------------------------------------------- */
+
 .site-header {
   background-color: #ffffff;
   color: #000000;
@@ -22,17 +35,16 @@ body.professional {
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Header title/logo */
 .site-header h1 {
   font-size: 24px;
   font-weight: 600;
   margin: 0;
 }
 
-/* Navigation links */
+/* Navigation layout */
 .site-header nav {
   display: flex;
-  gap: 30px; /* spreads links evenly */
+  gap: 30px;
 }
 
 .site-header nav a {
@@ -40,101 +52,105 @@ body.professional {
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
+  transition: color 0.2s ease;
 }
 
 .site-header nav a:hover {
   color: #555555;
-  
 }
 
-.content {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 15px;
+/* --------------------------------------------------
+   HEADINGS
+-------------------------------------------------- */
+
+h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.site-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #f0f0f0;
-  margin-top: 40px;
+h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 30px;
 }
 
-/* Scratch page styles */
+/* --------------------------------------------------
+   BUTTONS
+-------------------------------------------------- */
+
+button, .btn {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #333333;
+}
+
+/* --------------------------------------------------
+   IMAGES
+-------------------------------------------------- */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------
+   TABLEAU + VIDEO BOXES
+-------------------------------------------------- */
+
+.video-box,
+.tableau-box {
+  margin: 30px 0;
+}
+
+/* --------------------------------------------------
+   SCRATCH PAGE (kept simple + modern)
+-------------------------------------------------- */
+
 body.scratch {
-  background-color: #f0f8ff;
-  font-family: 'Trebuchet MS', Arial, sans-serif;
-  color: #333333;
-}
-
-.scratch-header {
-  background-color: #4a90e2;
-  color: #ffffff;
-  padding: 15px;
-}
-
-.scratch-header nav a {
-  color: #ffffff;
-  margin-right: 10px;
-  text-decoration: none;
-}
-
-.scratch-header nav a:hover {
-  text-decoration: underline;
+  background-color: #f7faff;
 }
 
 .scratch-content {
   max-width: 900px;
   margin: 20px auto;
-  padding: 0 15px;
-}
-
-.image-box img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 10px auto;
-}
-
-.video-box,
-.tableau-box {
-  margin: 20px 0;
+  padding: 0 20px;
 }
 
 /* Three styled divs */
 .three-divs {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
   margin-top: 20px;
 }
 
 .box {
   flex: 1 1 30%;
-  padding: 10px;
-  border: 1px solid #cccccc;
+  padding: 15px;
+  border-radius: 6px;
   background-color: #ffffff;
+  border: 1px solid #e5e5e5;
 }
 
-.box1 {
-  background-color: #e8f4ff;
-}
+.box1 { background-color: #e8f4ff; }
+.box2 { background-color: #e8ffe8; }
+.box3 { background-color: #fff5e8; }
 
-.box2 {
-  background-color: #e8ffe8;
-}
+/* --------------------------------------------------
+   RESUME PAGE
+-------------------------------------------------- */
 
-.box3 {
-  background-color: #fff5e8;
-}
-
-.scratch-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #d9e9ff;
-  margin-top: 40px;
-}
-/* Resume styling */
 .job {
   margin-bottom: 25px;
 }
@@ -152,11 +168,15 @@ body.scratch {
   margin-bottom: 8px;
 }
 
-.job-bullets {
+.job-bullets,
+.skill-bullets,
+.achievement-bullets {
   margin-left: 20px;
   list-style-type: disc;
+  line-height: 1.6;
 }
-/* Skills section styling */
+
+/* Skills section */
 .resume-subheader {
   font-size: 22px;
   margin-bottom: 15px;
@@ -168,57 +188,31 @@ body.scratch {
 }
 
 .skill-title {
-  font-size: 14px;   /* matches job-details */
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #555;       /* matches job-details color */
+  color: #555;
 }
 
-.skill-bullets {
-  margin-left: 20px;
-  list-style-type: disc;
-}
-/* Achievements section styling */
-.achievement-bullets {
-  margin-left: 20px;
-  list-style-type: disc;
-  line-height: 1.6;
-}
+/* Remove numbers for certain lists */
 .no-numbers {
   list-style-type: none;
   padding-left: 0;
 }
-/* Global header styling for ALL pages */
-.site-header {
-  background-color: #2c3e50;   /* same blue as scratch page */
-  color: #ffffff;              /* white text */
-  padding: 15px 20px;          /* spacing so it's not stuck to the edges */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin-top: 60px;
+  color: #777;
+  font-size: 14px;
 }
 
-/* Optional: make the nav links match and look clean */
-.site-header nav a {
-  color: #ffffff;
-  text-decoration: none;
-  margin-left: 15px;
-  font-weight: 500;
-}
-
-.site-header nav a:hover {
-  text-decoration: underline;
-}
-button, .btn {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 4px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 
 button:hover, .btn:hover {
   background-color: #333333;
