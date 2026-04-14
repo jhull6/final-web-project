@@ -162,3 +162,9 @@ body.scratch {
   margin-left: 20px;
   list-style-type: disc;
 }
+/* Achievements section styling */
+.achievement-bullets {
+  margin-left: 20px;
+  list-style-type: disc;
+  line-height: 1.6;
+}
