@@ -168,3 +168,7 @@ body.scratch {
   list-style-type: disc;
   line-height: 1.6;
 }
+.no-numbers {
+  list-style-type: none;
+  padding-left: 0;
+}
