@@ -311,3 +311,9 @@ button:hover, .btn:hover {
 .resume-section {
   text-align: left;
 }
+/* Center Welcome + About Me */
+#welcome-section,
+#about-section {
+  text-align: center;
+  margin: 40px auto;
+}
