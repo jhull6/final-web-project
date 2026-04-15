@@ -314,3 +314,8 @@ button:hover, .btn:hover {
   text-align: center;
   margin: 40px auto;
 }
+#welcome-section,
+#about-section {
+  text-align: center !important;
+  margin: 40px auto;
+}
