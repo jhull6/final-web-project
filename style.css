@@ -15,11 +15,12 @@ body {
 }
 
 /* Page content wrapper */
-.content, section {
+.content {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
 }
+
 
 /* --------------------------------------------------
    HEADER + NAVIGATION
