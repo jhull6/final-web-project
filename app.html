@@ -97,6 +97,15 @@
   <a href="scratch.html">Back To The Elephants</a>
 
   <script>
+    function updateKeyboard(letter, status) {
+  const keys = document.querySelectorAll(".key");
+  keys.forEach(key => {
+    if (key.textContent === letter) {
+      key.classList.remove("correct", "present", "absent");
+      key.classList.add(status);
+    }
+  });
+}
     const words = ["APPLE", "BRAIN", "CHAIR", "PLANT", "WATER", "MONEY", "SMILE", "LIGHT"];
     const secret = words[Math.floor(Math.random() * words.length)];
     let currentRow = 0;
