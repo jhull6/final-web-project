@@ -217,3 +217,45 @@ body.scratch {
 button:hover, .btn:hover {
   background-color: #333333;
 }
+#keyboard {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 8px;
+}
+
+.key {
+  background-color: #d3d6da;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.key.large-key {
+  padding: 12px 20px;
+}
+
+.key.correct {
+  background-color: #6aaa64; /* green */
+  color: white;
+}
+
+.key.present {
+  background-color: #c9b458; /* yellow */
+  color: white;
+}
+
+.key.absent {
+  background-color: #787c7e; /* grey */
+  color: white;
+}
