@@ -3,81 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <title>Mini Wordle Game</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
       text-align: center;
       padding-top: 40px;
+      color: #000;
     }
 
     h1 {
-      color: #2c3e50;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
     #board {
       display: grid;
-      grid-template-columns: repeat(5, 50px);
+      grid-template-columns: repeat(5, 55px);
       grid-gap: 8px;
       justify-content: center;
       margin: 20px auto;
-      width: 270px;
+      width: 300px;
     }
 
     .tile {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border: 2px solid #ccc;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
       background-color: white;
+      border-radius: 4px;
     }
 
+    /* Tile colors */
     .correct {
-      background-color: #6aaa64;
-      color: white;
-      border-color: #6aaa64;
+      background-color: #6aaa64 !important;
+      color: white !important;
+      border-color: #6aaa64 !important;
     }
 
     .present {
-      background-color: #c9b458;
-      color: white;
-      border-color: #c9b458;
+      background-color: #c9b458 !important;
+      color: white !important;
+      border-color: #c9b458 !important;
     }
 
     .absent {
-      background-color: #787c7e;
-      color: white;
-      border-color: #787c7e;
+      background-color: #787c7e !important;
+      color: white !important;
+      border-color: #787c7e !important;
     }
 
-    input {
-      padding: 8px;
-      font-size: 16px;
-      width: 150px;
-      margin-top: 20px;
+    /* Keyboard */
+    #keyboard {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
     }
 
-    button {
-      padding: 8px 15px;
+    .keyboard-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .key {
+      background-color: #d3d6da;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 4px;
       font-size: 16px;
-      margin-left: 10px;
+      font-family: 'Poppins', sans-serif;
       cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .large-key {
+      padding: 12px 20px;
+    }
+
+    .key.correct {
+      background-color: #6aaa64 !important;
+      color: white !important;
+    }
+
+    .key.present {
+      background-color: #c9b458 !important;
+      color: white !important;
+    }
+
+    .key.absent {
+      background-color: #787c7e !important;
+      color: white !important;
+    }
+
+    /* Back button */
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 18px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #333;
     }
 
     #message {
       margin-top: 20px;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 18px;
-    }
-
-    a {
-      display: block;
-      margin-top: 30px;
-      color: #0066cc;
     }
   </style>
 </head>
@@ -94,23 +140,65 @@
 
   <p id="message"></p>
 
-  <a href="scratch.html">Back To The Elephants</a>
+  <!-- ⭐ On‑screen keyboard (correct location) -->
+  <div id="keyboard">
+    <div class="keyboard-row">
+      <button class="key">Q</button>
+      <button class="key">W</button>
+      <button class="key">E</button>
+      <button class="key">R</button>
+      <button class="key">T</button>
+      <button class="key">Y</button>
+      <button class="key">U</button>
+      <button class="key">I</button>
+      <button class="key">O</button>
+      <button class="key">P</button>
+    </div>
+
+    <div class="keyboard-row">
+      <button class="key">A</button>
+      <button class="key">S</button>
+      <button class="key">D</button>
+      <button class="key">F</button>
+      <button class="key">G</button>
+      <button class="key">H</button>
+      <button class="key">J</button>
+      <button class="key">K</button>
+      <button class="key">L</button>
+    </div>
+
+    <div class="keyboard-row">
+      <button class="key large-key">Enter</button>
+      <button class="key">Z</button>
+      <button class="key">X</button>
+      <button class="key">C</button>
+      <button class="key">V</button>
+      <button class="key">B</button>
+      <button class="key">N</button>
+      <button class="key">M</button>
+      <button class="key large-key">Del</button>
+    </div>
+  </div>
+
+  <a href="scratch.html" class="btn">Back to the Elephants</a>
 
   <script>
+    /* ⭐ Keyboard updater */
     function updateKeyboard(letter, status) {
-  const keys = document.querySelectorAll(".key");
-  keys.forEach(key => {
-    if (key.textContent === letter) {
-      key.classList.remove("correct", "present", "absent");
-      key.classList.add(status);
+      const keys = document.querySelectorAll(".key");
+      keys.forEach(key => {
+        if (key.textContent === letter) {
+          key.classList.remove("correct", "present", "absent");
+          key.classList.add(status);
+        }
+      });
     }
-  });
-}
+
+    /* ⭐ Word list + setup */
     const words = ["APPLE", "BRAIN", "CHAIR", "PLANT", "WATER", "MONEY", "SMILE", "LIGHT"];
     const secret = words[Math.floor(Math.random() * words.length)];
     let currentRow = 0;
 
-    // Create 6 rows × 5 tiles = 30 tiles
     const board = document.getElementById("board");
     for (let i = 0; i < 30; i++) {
       const tile = document.createElement("div");
@@ -118,6 +206,7 @@
       board.appendChild(tile);
     }
 
+    /* ⭐ Main guess function */
     function submitGuess() {
       const input = document.getElementById("guessInput");
       let guess = input.value.toUpperCase();
@@ -130,16 +219,18 @@
       const tiles = document.querySelectorAll(".tile");
       const start = currentRow * 5;
 
-      // Fill tiles with letters
       for (let i = 0; i < 5; i++) {
         tiles[start + i].textContent = guess[i];
 
         if (guess[i] === secret[i]) {
           tiles[start + i].classList.add("correct");
+          updateKeyboard(guess[i], "correct");
         } else if (secret.includes(guess[i])) {
           tiles[start + i].classList.add("present");
+          updateKeyboard(guess[i], "present");
         } else {
           tiles[start + i].classList.add("absent");
+          updateKeyboard(guess[i], "absent");
         }
       }
 
@@ -162,45 +253,10 @@
     function disableGame() {
       document.getElementById("guessInput").disabled = true;
     }
-    <div id="keyboard">
-  <div class="keyboard-row">
-    <button class="key">Q</button>
-    <button class="key">W</button>
-    <button class="key">E</button>
-    <button class="key">R</button>
-    <button class="key">T</button>
-    <button class="key">Y</button>
-    <button class="key">U</button>
-    <button class="key">I</button>
-    <button class="key">O</button>
-    <button class="key">P</button>
-  </div>
+  </script>
 
-  <div class="keyboard-row">
-    <button class="key">A</button>
-    <button class="key">S</button>
-    <button class="key">D</button>
-    <button class="key">F</button>
-    <button class="key">G</button>
-    <button class="key">H</button>
-    <button class="key">J</button>
-    <button class="key">K</button>
-    <button class="key">L</button>
-  </div>
-
-  <div class="keyboard-row">
-    <button class="key large-key">Enter</button>
-    <button class="key">Z</button>
-    <button class="key">X</button>
-    <button class="key">C</button>
-    <button class="key">V</button>
-    <button class="key">B</button>
-    <button class="key">N</button>
-    <button class="key">M</button>
-    <button class="key large-key">Del</button>
-  </div>
-</div>
-
+</body>
+</html>
   </script>
 
 </body>
